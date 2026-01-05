@@ -75,6 +75,9 @@ export const ScheduleDay = <TFieldValues extends FieldValues>({
   const { watch, setValue } = useFormContext();
   const watchDayRange = watch(name);
 
+  // Cache times when toggling off, restore when toggling back on
+  const previousRangeRef = useRef<TimeRange[]>([]);
+
   return (
     <div
       className={cn(
@@ -97,7 +100,19 @@ export const ScheduleDay = <TFieldValues extends FieldValues>({
                 checked={watchDayRange && !!watchDayRange.length}
                 data-testid={`${weekday}-switch`}
                 onCheckedChange={(isChecked) => {
-                  setValue(name, (isChecked ? [DEFAULT_DAY_RANGE] : []) as TFieldValues[typeof name]);
+                  if (isChecked) {
+                    // Restore cached times, or use default if none
+                    const times = previousRangeRef.current.length > 0
+                      ? previousRangeRef.current
+                      : [DEFAULT_DAY_RANGE];
+                    setValue(name, times as TFieldValues[typeof name]);
+                  } else {
+                    // Cache current times before clearing
+                    if (watchDayRange?.length > 0) {
+                      previousRangeRef.current = watchDayRange;
+                    }
+                    setValue(name, [] as TFieldValues[typeof name]);
+                  }
                 }}
               />
             </div>
