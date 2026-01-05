@@ -1300,6 +1300,8 @@ checksums:
     schedule_deleted_successfully: fe6e460999c4dd4a9b60a3f4d9578737
     default_schedule_name: ba5a9d4aeb2115431906be1fa91f14d3
     new_schedule_heading: c3d0781d91be1cf6cab5241f7445628f
+    no_schedules_created_yet: 1df07cc038ad4ccaa7b549c563a3fd30
+    create_availability_schedule: 7c7be029f234d35d0c5dacb2813878dd
     new_schedule_description: 195d72b03024d485b69c2501c7509129
     requires_ownership_of_a_token: 81591b6e565824982da0fb4aeae85873
     example_name: febee8e9ab40b2fe5106d72675228d00

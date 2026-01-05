@@ -1298,6 +1298,8 @@
   "schedule_deleted_successfully": "Schemat har tagits bort",
   "default_schedule_name": "Arbetstider",
   "new_schedule_heading": "Skapa ett tillgänglighetsschema",
+  "no_schedules_created_yet": "Du har inte skapat några tillgänglighetsscheman ännu. Skapa ett för att komma igång.",
+  "create_availability_schedule": "Skapa tillgänglighetsschema",
   "new_schedule_description": "Genom att skapa tillgänglighetsscheman kan du hantera tillgänglighet för olika händelsetyper. De kan tillämpas på en eller flera händelsetyper.",
   "requires_ownership_of_a_token": "Kräver ägande av en token som tillhör följande adress:",
   "example_name": "Emil Persson",

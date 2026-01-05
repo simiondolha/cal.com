@@ -1298,6 +1298,8 @@
   "schedule_deleted_successfully": "Rozvrh bol úspešne odstránený",
   "default_schedule_name": "Pracovné hodiny",
   "new_schedule_heading": "Vytvoriť rozvrh dostupnosti",
+  "no_schedules_created_yet": "Zatiaľ ste nevytvorili žiadne plány dostupnosti. Vytvorte si jeden a môžete začať.",
+  "create_availability_schedule": "Vytvoriť plán dostupnosti",
   "new_schedule_description": "Vytváranie rozvrhov dostupnosti vám umožňuje spravovať dostupnosť naprieč typmi udalostí. Môžu byť aplikované na jeden alebo viac typov udalostí.",
   "requires_ownership_of_a_token": "Vyžaduje vlastníctvo tokenu patriaceho na nasledujúcu adresu:",
   "example_name": "Ján Novák",

@@ -1298,6 +1298,8 @@
   "schedule_deleted_successfully": "Horário eliminado com sucesso",
   "default_schedule_name": "Horário de trabalho",
   "new_schedule_heading": "Criar um horário de disponibilidade",
+  "no_schedules_created_yet": "Ainda não criou nenhum horário de disponibilidade. Crie um para começar.",
+  "create_availability_schedule": "Criar horário de disponibilidade",
   "new_schedule_description": "Criar horários de disponibilidade permite-lhe gerir a disponibilidade de todos os tipos de eventos. Podem ser aplicados a um ou mais tipos de eventos.",
   "requires_ownership_of_a_token": "Requer a propriedade de um token pertencente ao seguinte endereço:",
   "example_name": "José Ninguém",

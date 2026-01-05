@@ -1298,6 +1298,8 @@
   "schedule_deleted_successfully": "Programma eliminato",
   "default_schedule_name": "Orario lavorativo",
   "new_schedule_heading": "Crea un programma di disponibilità",
+  "no_schedules_created_yet": "Non hai ancora creato alcun programma di disponibilità. Creane uno per iniziare.",
+  "create_availability_schedule": "Crea programma di disponibilità",
   "new_schedule_description": "La creazione di programmi di disponibilità consente di gestire la disponibilità per i diversi tipi di eventi. I programmi possono essere applicati a uno o più tipi di evento.",
   "requires_ownership_of_a_token": "Richiede il possesso di un token appartenente al seguente indirizzo:",
   "example_name": "Paolo Rossi",

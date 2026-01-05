@@ -1298,6 +1298,8 @@
   "schedule_deleted_successfully": "Tidsplanen blev slettet",
   "default_schedule_name": "Arbejdstider",
   "new_schedule_heading": "Opret en tilgængelighedsplan",
+  "no_schedules_created_yet": "Du har endnu ikke oprettet nogen tilgængelighedsplaner. Opret en for at komme i gang.",
+  "create_availability_schedule": "Opret tilgængelighedsplan",
   "new_schedule_description": "Oprettelse af tilgængelighedsplaner giver dig mulighed for at administrere tilgængelighed på tværs af begivenhedstyper. De kan anvendes på en eller flere begivenhedstyper.",
   "requires_ownership_of_a_token": "Kræver ejerskab af et token, der tilhører følgende adresse:",
   "example_name": "John Doe",
