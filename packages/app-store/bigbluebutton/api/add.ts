@@ -12,7 +12,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const { teamId, returnTo } = req.query;
 
-  await throwIfNotHaveAdminAccessToTeam({ teamId: Number(teamId) ?? null, userId: req.session.user.id });
+  await throwIfNotHaveAdminAccessToTeam({ teamId: teamId ? Number(teamId) : null, userId: req.session.user.id });
 
   const installForObject = teamId ? { teamId: Number(teamId) } : { userId: req.session.user.id };
   const appType = "bigbluebutton_video";
@@ -23,6 +23,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         type: appType,
         ...installForObject,
       },
+      select: { id: true },
     });
 
     if (alreadyInstalled) {
@@ -41,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (error instanceof Error) {
       return res.status(500).json({ message: error.message });
     }
-    return res.status(500);
+    return res.status(500).json({ message: "Unknown error" });
   }
 
   return res

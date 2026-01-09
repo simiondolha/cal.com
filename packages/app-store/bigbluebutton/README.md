@@ -28,6 +28,10 @@ Once installed and configured, the integration will automatically:
 1. Create a BigBlueButton meeting room when a booking is confirmed
 2. Provide join links for both moderators (organizers) and attendees
 
+## Limitations
+
+- **Meeting cancellation**: When a booking is cancelled, the BBB meeting room is not automatically ended. The meeting will naturally end when all participants leave or when it reaches the server's configured timeout. This is because BBB requires the moderator password to end a meeting, which is not persisted.
+
 ## API Documentation
 
 - [BigBlueButton API Reference](https://docs.bigbluebutton.org/development/api/)

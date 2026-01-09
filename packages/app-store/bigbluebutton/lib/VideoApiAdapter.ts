@@ -106,27 +106,12 @@ const BigBlueButtonVideoApiAdapter = (): VideoApiAdapter => {
     },
 
     deleteMeeting: async (uid: string): Promise<void> => {
-      const appKeys = await getAppKeysFromSlug(metadata.slug);
-
-      const bbbUrl = appKeys.bbbUrl as string;
-      const bbbSecret = appKeys.bbbSecret as string;
-
-      if (!bbbUrl || !bbbSecret) {
-        return;
-      }
-
-      // End meeting
-      const endParams: Record<string, string> = {
-        meetingID: uid,
-        password: "", // moderator password required but we don't store it
-      };
-
-      try {
-        const endUrl = buildApiUrl(bbbUrl, "end", endParams, bbbSecret);
-        await fetch(endUrl);
-      } catch {
-        // Ignore errors when ending meeting
-      }
+      // NOTE: BBB requires moderator password to end a meeting via API.
+      // Since Cal.com doesn't persist the moderator password in booking references,
+      // we cannot programmatically end meetings. The meeting will naturally end
+      // when all participants leave or when it reaches the configured timeout.
+      // This is a known limitation - meetings are not forcibly ended on cancellation.
+      void uid; // Acknowledge unused parameter
     },
 
     updateMeeting: (bookingRef: PartialReference): Promise<VideoCallData> => {
