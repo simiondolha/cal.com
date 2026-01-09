@@ -1,0 +1,14 @@
+{
+  "name": "@calcom/caldav-generic",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Connect any CalDAV calendar (Proton, Fastmail, Nextcloud, etc.) with automatic capability detection for read-only calendars",
+  "main": "./index.ts",
+  "dependencies": {
+    "@calcom/lib": "*",
+    "@calcom/prisma": "*"
+  },
+  "devDependencies": {
+    "@calcom/types": "*"
+  }
+}
