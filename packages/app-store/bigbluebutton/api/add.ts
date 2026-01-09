@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       throw new Error("Already installed");
     }
 
-    const installation = await prisma.credential.create({
+    await prisma.credential.create({
       data: {
         type: appType,
         key: {},
@@ -37,10 +37,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         appId: "bigbluebutton",
       },
     });
-
-    if (!installation) {
-      throw new Error("Unable to create user credential for BigBlueButton");
-    }
   } catch (error: unknown) {
     if (error instanceof Error) {
       return res.status(500).json({ message: error.message });

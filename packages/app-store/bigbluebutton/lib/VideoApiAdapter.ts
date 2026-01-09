@@ -8,24 +8,6 @@ import type { VideoApiAdapter, VideoCallData } from "@calcom/types/VideoApiAdapt
 import getAppKeysFromSlug from "../../_utils/getAppKeysFromSlug";
 import { metadata } from "../_metadata";
 
-interface BBBCreateResponse {
-  returncode: string;
-  meetingID: string;
-  internalMeetingID: string;
-  parentMeetingID: string;
-  attendeePW: string;
-  moderatorPW: string;
-  createTime: string;
-  voiceBridge: string;
-  dialNumber: string;
-  createDate: string;
-  hasUserJoined: string;
-  duration: string;
-  hasBeenForciblyEnded: string;
-  messageKey: string;
-  message: string;
-}
-
 function generateChecksum(apiCall: string, queryString: string, secret: string): string {
   const data = apiCall + queryString + secret;
   return crypto.createHash("sha1").update(data).digest("hex");
