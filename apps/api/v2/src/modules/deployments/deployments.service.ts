@@ -8,7 +8,7 @@ const CACHING_TIME = 86400000; // 24 hours in milliseconds
 const getLicenseCacheKey = (key: string) => `api-v2-license-key-goblin-url-${key}`;
 
 type LicenseCheckResponse = {
-  status: boolean;
+  valid: boolean;
 };
 @Injectable()
 export class DeploymentsService {
@@ -18,30 +18,37 @@ export class DeploymentsService {
     private readonly redisService: RedisService
   ) {}
 
-  async checkLicense() {
+  async checkLicense(): Promise<boolean> {
     if (this.configService.get("e2e")) {
       return true;
     }
-    let licenseKey = this.configService.get("api.licenseKey");
 
-    if (!licenseKey) {
-      /** We try to check on DB only if env is undefined */
+    const envLicenseKey = this.configService.get("api.licenseKey");
+    if (!envLicenseKey) {
       const deployment = await this.deploymentsRepository.getDeployment();
-      licenseKey = deployment?.licenseKey ?? undefined;
+      const dbLicenseKey = deployment?.licenseKey;
+      if (!dbLicenseKey) {
+        return false;
+      }
+      return this.validateLicenseKey(dbLicenseKey);
     }
 
-    if (!licenseKey) {
-      return false;
-    }
-    const licenseKeyUrl = this.configService.get("api.licenseKeyUrl") + `/${licenseKey}`;
-    const cachedData = await this.redisService.redis.get(getLicenseCacheKey(licenseKey));
+    return this.validateLicenseKey(envLicenseKey);
+  }
+
+  private async validateLicenseKey(licenseKey: string): Promise<boolean> {
+    const cacheKey = getLicenseCacheKey(licenseKey);
+    const cachedData = await this.redisService.redis.get(cacheKey);
+
     if (cachedData) {
-      return (JSON.parse(cachedData) as LicenseCheckResponse)?.status;
+      return (JSON.parse(cachedData) as LicenseCheckResponse)?.valid ?? false;
     }
+
+    const licenseKeyUrl = `${this.configService.get("api.licenseKeyUrl")}/${licenseKey}`;
     const response = await fetch(licenseKeyUrl, { mode: "cors" });
     const data = (await response.json()) as LicenseCheckResponse;
-    const cacheKey = getLicenseCacheKey(licenseKey);
+
     this.redisService.redis.set(cacheKey, JSON.stringify(data), "EX", CACHING_TIME);
-    return data.status;
+    return data.valid;
   }
 }
